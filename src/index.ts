@@ -1,5 +1,8 @@
 import WebSocket, { WebSocketServer } from "ws";
+import TurtleInitDTO from "./classes/DTO/TurtleInitDTO";
+import TurtleResponseDTO from "./classes/DTO/TurtleResponseDTO";
 import Turtle from "./classes/Turtle";
+import Actions from "./classes/DTO/action";
 
 const wss = new WebSocketServer({ port: 8080 });
 
@@ -9,22 +12,20 @@ const turtles: Turtle[] = [];
 
 wss.on("connection", (ws: WebSocket) => {
   ws.on("message", (message: string) => {
-    const data = JSON.parse(message);
-    const turtle = turtles.find((t) => t.id === data.id);
-    if (turtle) {
-      turtle.ws = ws;
-    } else {
-      turtles.push(
-        new Turtle(
-          data.x,
-          data.y,
-          data.z,
-          data.facing,
-          data.dimensions,
-          data.id,
-          ws
-        )
+    let data: TurtleInitDTO | TurtleResponseDTO = JSON.parse(message);
+    if (data.action === Actions.Init) {
+      data = data as TurtleInitDTO;
+      const turtle = new Turtle(
+        data.x,
+        data.y,
+        data.z,
+        data.facing,
+        data.dimension,
+        data.id,
+        ws
       );
+      turtles.push(turtle);
+      console.log(`Turtle ${turtle.id} added`);
     }
   });
   ws.send("Hello World");

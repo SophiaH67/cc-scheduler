@@ -9,6 +9,6 @@ export default interface TurtleInitDTO extends TurtleDTO {
   y: number;
   z: number;
   facing: Directions;
-  dimensions: Dimensions;
+  dimension: Dimensions;
   id: number;
 }
