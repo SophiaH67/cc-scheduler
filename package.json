@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "start": "node dist/",
+    "dev1": "nodemon dist/index.js",
+    "dev2": "tsc --watch"
   },
   "author": "",
   "license": "ISC",
@@ -12,6 +15,8 @@
     "ws": "^8.4.2"
   },
   "devDependencies": {
-    "@types/ws": "^8.2.2"
+    "@types/ws": "^8.2.2",
+    "nodemon": "^2.0.15",
+    "typescript": "^4.5.5"
   }
 }
