@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "undici": "^4.13.0",
     "ws": "^8.4.2"
   },
   "devDependencies": {

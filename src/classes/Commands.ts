@@ -13,4 +13,7 @@ enum Commands {
   lookWest = "lookWest",
   getGPS = "getGPS",
   getFacing = "getFacing",
+  noOp = "noOp",
 }
+
+export default Commands;
