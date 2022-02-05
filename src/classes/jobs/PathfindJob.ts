@@ -25,7 +25,6 @@ export default class PathfindJob extends BaseJob {
       },
       this.target
     ).then((path) => {
-      console.log("🏃 received path", path);
       this.path = path;
       this.emit("progress", this.progress);
       this.nextStep();
